@@ -7,12 +7,9 @@ struct patient_data {
     char guar_name[50];
     char gen[8];
     char bgrp[5];
-    int age;
-    int house_no;
-    char street[30];
-    char city[30];
-    char state[30];
-    int phn;
+    char age[10];
+    char address[4][30];
+    char phn[15];
     char dis_name[20];
     char doc_name[50];
     char his_desc[200];
@@ -37,25 +34,23 @@ void newquery(struct patient_data *ptr) {
     gets((ptr + 0)->bgrp);
 
     printf("Enter Patient's Age - ");
-    scanf("%d", &(ptr + 0)->age);
+    gets((ptr + 0)->age);
 
     printf("Enter Patient's Address -\n");
     printf("\tHouse No - ");
-    scanf("%d", &(ptr + 0)->house_no);
-    fflush(stdin);
+    gets((ptr + 0)->address[0]);
 
     printf("\tStreet - ");
-    gets((ptr + 0)->street);
+    gets((ptr + 0)->address[1]);
 
     printf("\tCity - ");
-    gets((ptr + 0)->city);
+    gets((ptr + 0)->address[2]);
 
     printf("\tState - ");
-    gets((ptr + 0)->state);
+    gets((ptr + 0)->address[3]);
 
     printf("Enter Phone Number - ");
-    scanf("%d", &(ptr + 0)->phn);
-    fflush(stdin);
+    gets((ptr + 0)->phn);
 
     printf("Enter Disease Name - ");
     gets((ptr + 0)->dis_name);
@@ -118,16 +113,16 @@ void newwrite(struct patient_data *ptr) {
     fprintf(fptr, "Address: \n");
 
     fprintf(fptr, "\tHouse No: ");
-    fprintf(fptr, "%d\n", (ptr + 0)->house_no);
+    fprintf(fptr, "%d\n", (ptr + 0)->address[0]);
 
     fprintf(fptr, "\tStreet: ");
-    fprintf(fptr, "%s\n", (ptr + 0)->street);
+    fprintf(fptr, "%s\n", (ptr + 0)->address[1]);
 
     fprintf(fptr, "\tCity: ");
-    fprintf(fptr, "%s\n", (ptr + 0)->city);
+    fprintf(fptr, "%s\n", (ptr + 0)->address[2]);
 
     fprintf(fptr, "\tState: ");
-    fprintf(fptr, "%s\n", (ptr + 0)->state);
+    fprintf(fptr, "%s\n", (ptr + 0)->address[3]);
 
     fprintf(fptr, "Phone Number: ");
     fprintf(fptr, "%d\n", (ptr + 0)->phn);
@@ -149,6 +144,8 @@ void newwrite(struct patient_data *ptr) {
 
     fprintf(fptr, "Medicine Prescribed: ");
     fprintf(fptr, "%s\n", (ptr + 0)->med_pres);
+
+    fclose(fptr);
 }
 int main() {
     struct patient_data *ptr;
