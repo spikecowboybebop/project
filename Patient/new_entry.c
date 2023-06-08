@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 struct patient_data {
-    int reg_no;
+    char reg_no[15];
     char pat_name[50];
     char guar_name[50];
     char gen[8];
@@ -21,141 +21,149 @@ struct patient_data {
     char med_pres[100];
 };
 void newquery(struct patient_data *ptr) {
-    printf("Enter Registration Number - ");
-        scanf("%d", &(ptr + 0)->reg_no);
-        
-        printf("Enter Name of the Patient - ");
-        gets((ptr + 0)->pat_name);
-        
-        printf("Enter Name of the Patient's Guardian - ");
-        gets((ptr + 0)->guar_name);
-        
-        printf("Enter Gender (M/F) - ");
-        gets((ptr + 0)->gen);
+    printf("Enter registration Number - ");
+    gets((ptr + 0)->reg_no);
 
-        printf("Enter Blood Group - ");
-        gets((ptr + 0)->bgrp);
-        
-        printf("Enter Age - ");
-        scanf("%d", &(ptr + 0)->age);
-        
-        printf("Enter Address: \n");
-            printf("\tHouse No. - ");
-            gets((ptr + 0)->house_no);
-            
-            printf("\tStreet - ");
-            gets((ptr + 0)->street);
-            
-            printf("\tCity - ");
-            gets((ptr + 0)->city);
-            
-            printf("\tState - ");
-            gets((ptr + 0)->state);
-        
-        printf("Enter Phone Number - ");
-        scanf("%d", &(ptr + 0)->phn);
-        
-        printf("Disease Name - ");
-        gets((ptr + 0)->dis_name);
-        
-        printf("Name of Doctor supervising the patient - ");
-        gets((ptr + 0)->doc_name);
-        
-        char n;
-        printf("Does the patient have any History(Y/N): ");
-        scanf("%c", &n);
-        
-        if(n == 'Y') {
-            printf("History - ");
-            gets((ptr + 0)->his_desc);
-            
-            printf("Date of Treatment - ");
-            gets((ptr + 0)->date_treat);
-            
-            printf("Treatment Given - ");
-            gets((ptr + 0)->treat_given);
-            
-            printf("Medicine Prescribed - ");
-            gets((ptr + 0)->med_pres);
-        }
-	else if (n == 'N') {
-	    strcpy((ptr + 0)->his_desc, "None");
-	    strcpy((ptr + 0)->date_treat, "None");
-	    strcpy((ptr + 0)->treat_given, "None");
-	    strcpy((ptr + 0)->med_pres, "None");
-	}
+    printf("Enter Patient Name - ");
+    gets((ptr + 0)->pat_name);
+
+    printf("Enter Patient's Guardian Name - ");
+    gets((ptr + 0)->guar_name);
+
+    printf("Enter Patient's Gender - ");
+    gets((ptr + 0)->gen);
+
+    printf("Enter Patient's Blood Group - ");
+    gets((ptr + 0)->bgrp);
+
+    printf("Enter Patient's Age - ");
+    scanf("%d", &(ptr + 0)->age);
+
+    printf("Enter Patient's Address -\n");
+    printf("\tHouse No - ");
+    scanf("%d", &(ptr + 0)->house_no);
+    fflush(stdin);
+
+    printf("\tStreet - ");
+    gets((ptr + 0)->street);
+
+    printf("\tCity - ");
+    gets((ptr + 0)->city);
+
+    printf("\tState - ");
+    gets((ptr + 0)->state);
+
+    printf("Enter Phone Number - ");
+    scanf("%d", &(ptr + 0)->phn);
+    fflush(stdin);
+
+    printf("Enter Disease Name - ");
+    gets((ptr + 0)->dis_name);
+
+    printf("Enter Doctor's Name - ");
+    gets((ptr + 0)->doc_name);
+
+    char c;
+    printf("Enter Y/N if the patient has any history: ");
+    scanf("%c", &c);
+    fflush(stdin);
+
+    if(c == 'Y') {
+        printf("Enter History - ");
+        gets((ptr + 0)->his_desc);
+
+        printf("Enter Treatment Date - ");
+        gets((ptr + 0)->date_treat);
+
+        printf("Treatment Given - ");
+        gets((ptr + 0)->treat_given);
+
+        printf("Medicine Prescribed - ");
+        gets((ptr + 0)->med_pres);
+    }
+    else if(c == 'N') {
+        strcpy((ptr + 0)->his_desc, "None");
+        strcpy((ptr + 0)->date_treat, "None");
+        strcpy((ptr + 0)->treat_given, "None");
+        strcpy((ptr + 0)->med_pres, "None");
+    }
 }
-void newentry(struct patient_data *ptr) {
+void newwrite(struct patient_data *ptr) {
     FILE *fptr;
-    fptr = fopen("patient_records.txt", "a");
+    char fname[100];
+    strcpy(fname, (ptr + 0)->reg_no);
+    strcat(fname, (ptr + 0)->pat_name);
+    strcat(fname, ".txt");
 
-    fprintf(fptr, "Registration Number:\t");
-    fprintf(fptr, "%d\n", (ptr + 0)->reg_no);
-    
-    fprintf(fptr, "Patient Name:\t");
+    fptr = fopen(fname, "w");
+
+    fprintf(fptr, "Registration Number: ");
+    fprintf(fptr, "%s\n", (ptr + 0)->reg_no);
+
+    fprintf(fptr, "Patient Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->pat_name);
 
-    fprintf(fptr, "Patient's Guardian Name:\t");
+    fprintf(fptr, "Patient's Guardian Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->guar_name);
-    
-    fprintf(fptr, "Patient's Gender:\t");
-    fprintf(fptr, "%c\n", (ptr + 0)->gen);
 
-    fprintf(fptr, "Blood Group:\t");
+    fprintf(fptr, "Patient's Gender: ");
+    fprintf(fptr, "%s\n", (ptr + 0)->gen);
+
+    fprintf(fptr, "Patient's Blood Group: ");
     fprintf(fptr, "%s\n", (ptr + 0)->bgrp);
 
-    fprintf(fptr, "Age:\t");
+    fprintf(fptr, "Patient's Age: ");
     fprintf(fptr, "%d\n", (ptr + 0)->age);
 
-    fprintf(fptr, "Address:\n");
+    fprintf(fptr, "Address: \n");
 
-    fprintf(fptr, "House No:\t");
+    fprintf(fptr, "\tHouse No: ");
     fprintf(fptr, "%d\n", (ptr + 0)->house_no);
 
-    fprintf(fptr, "Street:\t");
+    fprintf(fptr, "\tStreet: ");
     fprintf(fptr, "%s\n", (ptr + 0)->street);
 
-    fprintf(fptr, "City:\t");
+    fprintf(fptr, "\tCity: ");
     fprintf(fptr, "%s\n", (ptr + 0)->city);
 
-    fprintf(fptr, "State:\t");
+    fprintf(fptr, "\tState: ");
     fprintf(fptr, "%s\n", (ptr + 0)->state);
 
-    fprintf(fptr, "Phone Number:\t");
+    fprintf(fptr, "Phone Number: ");
     fprintf(fptr, "%d\n", (ptr + 0)->phn);
 
-    fprintf(fptr, "Disease Name:\t");
+    fprintf(fptr, "Disease Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->dis_name);
 
-    fprintf(fptr, "Doctor Name:\t");
+    fprintf(fptr, "Doctor Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->doc_name);
 
-    fprintf(fptr, "History:\t");
+    fprintf(fptr, "History: ");
     fprintf(fptr, "%s\n", (ptr + 0)->his_desc);
 
-    fprintf(fptr, "Treatment Date:\t");
+    fprintf(fptr, "Treatment Date: ");
     fprintf(fptr, "%s\n", (ptr + 0)->date_treat);
 
-    fprintf(fptr, "Treatment Given:\t");
+    fprintf(fptr, "Treatment Given: ");
     fprintf(fptr, "%s\n", (ptr + 0)->treat_given);
 
-    fprintf(fptr, "Medicine Prescribed:\t");
-    fprintf(fptr, "%s\n", (ptr + 0)->med_pres); 
+    fprintf(fptr, "Medicine Prescribed: ");
+    fprintf(fptr, "%s\n", (ptr + 0)->med_pres);
 }
 int main() {
-    int c;
-    
+    struct patient_data *ptr;
+    ptr = (struct patient_data *)malloc(1 * sizeof(struct patient_data));
+
+    int d;
     do {
-        struct patient_data *ptr;
-        ptr = (struct patient_data *)malloc(1 * sizeof(struct patient_data));
         newquery(ptr);
-        newentry(ptr);
-        
-        printf("Enter 1 to enter patient's data | Enter 0 to return to Main Menu\n");
-        printf("Enter 1/ 0 - ");
-        scanf("%d", &c);
-        
-    } while(c == 1);
+        newwrite(ptr);
+
+        printf("Enter 1/0 to enter new patient's data - ");
+        scanf("%d", &d);
+        fflush(stdin);
+
+    } while (d == 1);
 
     return 0;
 }
