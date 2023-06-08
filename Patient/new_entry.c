@@ -92,57 +92,38 @@ void newwrite(struct patient_data *ptr) {
 
     fptr = fopen(fname, "w");
 
-    fprintf(fptr, "Registration Number: ");
     fprintf(fptr, "%s\n", (ptr + 0)->reg_no);
 
-    fprintf(fptr, "Patient Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->pat_name);
 
-    fprintf(fptr, "Patient's Guardian Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->guar_name);
 
-    fprintf(fptr, "Patient's Gender: ");
     fprintf(fptr, "%s\n", (ptr + 0)->gen);
 
-    fprintf(fptr, "Patient's Blood Group: ");
     fprintf(fptr, "%s\n", (ptr + 0)->bgrp);
 
-    fprintf(fptr, "Patient's Age: ");
     fprintf(fptr, "%d\n", (ptr + 0)->age);
 
-    fprintf(fptr, "Address: \n");
-
-    fprintf(fptr, "\tHouse No: ");
     fprintf(fptr, "%d\n", (ptr + 0)->address[0]);
 
-    fprintf(fptr, "\tStreet: ");
     fprintf(fptr, "%s\n", (ptr + 0)->address[1]);
 
-    fprintf(fptr, "\tCity: ");
     fprintf(fptr, "%s\n", (ptr + 0)->address[2]);
 
-    fprintf(fptr, "\tState: ");
     fprintf(fptr, "%s\n", (ptr + 0)->address[3]);
 
-    fprintf(fptr, "Phone Number: ");
     fprintf(fptr, "%d\n", (ptr + 0)->phn);
 
-    fprintf(fptr, "Disease Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->dis_name);
 
-    fprintf(fptr, "Doctor Name: ");
     fprintf(fptr, "%s\n", (ptr + 0)->doc_name);
 
-    fprintf(fptr, "History: ");
     fprintf(fptr, "%s\n", (ptr + 0)->his_desc);
 
-    fprintf(fptr, "Treatment Date: ");
     fprintf(fptr, "%s\n", (ptr + 0)->date_treat);
 
-    fprintf(fptr, "Treatment Given: ");
     fprintf(fptr, "%s\n", (ptr + 0)->treat_given);
 
-    fprintf(fptr, "Medicine Prescribed: ");
     fprintf(fptr, "%s\n", (ptr + 0)->med_pres);
 
     fclose(fptr);
