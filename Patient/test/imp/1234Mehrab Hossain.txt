@@ -1,0 +1,18 @@
+Registration Number: 1234
+Patient Name: Mehrab Hossain
+Patient's Guardian Name: Anisuzzaman Khandoker
+Patient's Gender: Male
+Patient's Blood Group: B+
+Patient's Age: 7736808
+Address: 
+	House No: 7736818
+	Street: Baker Street
+	City: Dhaka
+	State: Dhaka
+Phone Number: 7736938
+Disease Name: Fever
+Doctor Name: Dr. Asthana
+History: Anxiety Issues
+Treatment Date: 23/1/2020
+Treatment Given: Psychotherapy
+Medicine Prescribed: Anxiety Pills
